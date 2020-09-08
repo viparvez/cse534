@@ -83,37 +83,36 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div class="ui-widget ui-helper-clearfix">
-          <div class="col-12">
-            <?php
-              $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
-              
-              if (!empty($query)) {
-                foreach ($query as $key => $value) {
 
-                  echo "
-                    <div class='col-4 card-body text-center'>
-                      <h5>$query[$key]['name']</h5>
-                      <img src='$query[$key]['path']'/>
-                    </div>
-                  ";
+      <div class="container">
+        <div class="row">
 
-                } else{
-                  echo "
-                    <div class='col-4 card-body text-center'>
-                      <h5>Default</h5>
-                      <img src='gallery/default.jpeg'/>
-                    </div>
-                  ";
-                }
-              ?>
+          <?php
+            $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
             
-          </div>
-          </ul>
+            if (!empty($query)) {
+              foreach ($query as $key => $value) {
+
+                echo "
+                  <div class='col-4 card-body text-center'>
+                    <h5>".$query[$key]['name']."</h5>
+                    <img src='".$query[$key]['path']."'/>
+                  </div>
+                ";
+
+              } else{
+                echo "
+                  <div class='col-4 card-body text-center'>
+                    <h5>Default</h5>
+                    <img src='gallery/default.jpeg'/>
+                  </div>
+                ";
+              }
+            }
+          ?>
+
         </div>
       </div>
-      <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
