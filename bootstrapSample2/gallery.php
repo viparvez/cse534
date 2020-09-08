@@ -1,7 +1,3 @@
-<?php
-include 'DBController.php';
-$db_handle = new DBController();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,39 +85,31 @@ $db_handle = new DBController();
       </div>
       <div class="container-fluid">
         <div class="ui-widget ui-helper-clearfix">
-          <ul id="draggable" class="gallery ui-helper-reset ui-helper-clearfix">
+          <div class="col-12">
             <?php
-            $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
-            if (!empty($query)) {
-              foreach ($query as $key => $value) {
-            ?>
-                <?php
-                if (file_exists($query[$key]["path"])) {
-                ?>
+              $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
+              
+              if (!empty($query)) {
+                foreach ($query as $key => $value) {
 
-                  <li class="col ui-widget-content ui-corner-tr">
-                    <div class="card-body text-center">
-                      <h5><?php echo $query[$key]["name"]; ?></h5>
-                      <img src="<?php echo $query[$key]["path"]; ?>" />
+                  echo "
+                    <div class='col-4 card-body text-center'>
+                      <h5>$query[$key]['name']</h5>
+                      <img src='$query[$key]['path']'/>
                     </div>
-                  </li>
+                  ";
 
-                <?php
-                } else {
-                ?>
-
-                  <li class="col ui-widget-content ui-corner-tr">
-                    <div class="card-body text-center">
-                      <img src="gallery/default.jpeg" />
+                } else{
+                  echo "
+                    <div class='col-4 card-body text-center'>
+                      <h5>Default</h5>
+                      <img src='gallery/default.jpeg'/>
                     </div>
-                  </li>
-                <?php
+                  ";
                 }
-                ?>
-            <?php
-              }
-            }
-            ?>
+              ?>
+            
+          </div>
           </ul>
         </div>
       </div>
