@@ -87,46 +87,77 @@ $db_handle = new DBController();
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div class="ui-widget ui-helper-clearfix">
-          <ul id="draggable" class="gallery ui-helper-reset ui-helper-clearfix">
-            <?php
-            $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
-            if (!empty($query)) {
-              foreach ($query as $key => $value) {
-            ?>
-                <?php
-                if (file_exists($query[$key]["path"])) {
-                ?>
 
-                  <li class="col ui-widget-content ui-corner-tr">
-                    <div class="card-body text-center">
-                      <h5><?php echo $query[$key]["name"]; ?></h5>
-                      <img src="<?php echo $query[$key]["path"]; ?>" />
-                    </div>
-                  </li>
+      <div class="container">
+        <div class="row">
 
-                <?php
-                } else {
-                ?>
+          <?php
+          $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
 
-                  <li class="col ui-widget-content ui-corner-tr">
-                    <div class="card-body text-center">
-                      <img src="gallery/default.jpeg" />
-                    </div>
-                  </li>
-                <?php
-                }
-                ?>
-            <?php
-              }
+          if (!empty($query)) {
+            foreach ($query as $key => $value) {
+
+              echo "
+                  <div class='col-4 card-body text-center'>
+                    <h5>" . $query[$key]['name'] . "</h5>
+                    <img src='" . $query[$key]['path'] . "'/>
+                  </div>
+                ";
             }
-            ?>
-          </ul>
+          } else {
+            echo "
+                  <div class='col-4 card-body text-center'>
+                    <h5>Default</h5>
+                    <img src='gallery/default.jpeg'/>
+                  </div>
+                ";
+          }
+
+          ?>
+
         </div>
       </div>
-      <!-- /#page-content-wrapper -->
+      <div class="container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          See the Images
+        </button>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="container-fluid">
+              <div class="row">
 
+                <?php
+                $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
+
+                if (!empty($query)) {
+                  foreach ($query as $key => $value) {
+
+                    echo "
+                  <div class='col-6 card-body text-center'>
+                    <h5>" . $query[$key]['name'] . "</h5>
+                    <img src='" . $query[$key]['path'] . "'/>
+                  </div>
+                ";
+                  }
+                } else {
+                  echo "
+                  <div class='col-6 card-body text-center'>
+                    <h5>Default</h5>
+                    <img src='gallery/default.jpeg'/>
+                  </div>
+                ";
+                }
+
+                ?>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /#wrapper -->
 
