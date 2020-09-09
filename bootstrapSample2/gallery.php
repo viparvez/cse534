@@ -23,6 +23,37 @@ $db_handle = new DBController();
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
 
+  <style>
+    #select [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+#select [type=radio] + img {
+  transition-duration: 0.5s;
+  transform: scale(0.9);
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* CHECKED STYLES */
+#select [type=radio]:checked + img {
+  box-shadow: 0 0 0 8px #00c09e;;
+  outline: 4px solid #f00;
+  transition-duration: 0.5s;
+  transform:scale(1);  
+  opacity:1;
+}
+
+@keyframes selected {
+  0% { border-color: #fff; }
+  50% { transform: scale(0.5); opacity: 0.8; box-shadow: 0 0 0 4px #00c09e; }
+  80%,100% { width: 100%; height: 100%; box-shadow: 0 0 0 4px #00c09e; }
+}
+  </style>
 
 </head>
 
@@ -89,32 +120,38 @@ $db_handle = new DBController();
       </div>
 
       <div class="container">
-        <div class="row">
+        <div class="selector">
+          <div class="row">
 
-          <?php
-          $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
+            <?php
+            $query = $db_handle->runQuery("SELECT * FROM tbl_image ORDER BY id ASC");
 
-          if (!empty($query)) {
-            foreach ($query as $key => $value) {
+            if (!empty($query)) {
+              foreach ($query as $key => $value) {
 
-              echo "
-                  <div class='col-4 card-body text-center'>
+                echo "
+              
+                  <div class='col-4 card-body text-center' id=select>
                     <h5>" . $query[$key]['name'] . "</h5>
+                    <label>
+                    <input type='radio' name='credit-card' value='visa' />
+                    
                     <img src='" . $query[$key]['path'] . "'/>
+                    </label>
                   </div>
                 ";
-            }
-          } else {
-            echo "
+              }
+            } else {
+              echo "
                   <div class='col-4 card-body text-center'>
                     <h5>Default</h5>
                     <img src='gallery/default.jpeg'/>
                   </div>
                 ";
-          }
+            }
 
-          ?>
-
+            ?>
+          </div>
         </div>
       </div>
       <div class="container">
@@ -136,9 +173,13 @@ $db_handle = new DBController();
                   foreach ($query as $key => $value) {
 
                     echo "
-                  <div class='col-6 card-body text-center'>
+                    <div class='col-6 card-body text-center' id=select>
                     <h5>" . $query[$key]['name'] . "</h5>
+                    <label>
+                    <input type='radio' name='credit-card' value='visa' />
+                    
                     <img src='" . $query[$key]['path'] . "'/>
+                    </label>
                   </div>
                 ";
                   }
