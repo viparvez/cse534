@@ -24,35 +24,70 @@ $db_handle = new DBController();
   <link rel="stylesheet" href="/resources/demos/style.css">
 
   <style>
-    #select [type=radio] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+    #select [type=radio] {
+      position: relative;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-/* IMAGE STYLES */
-#select [type=radio] + img {
-  transition-duration: 0.5s;
-  transform: scale(0.9);
-  cursor: pointer;
-  opacity: 0.6;
-}
+    /* IMAGE STYLES */
+    #select [type=radio]+img {
+      transition-duration: 0.5s;
+      transform: scale(0.9);
+      cursor: pointer;
+      opacity: 1;
+      place-items: center center;
+    }
 
-/* CHECKED STYLES */
-#select [type=radio]:checked + img {
-  box-shadow: 0 0 0 8px #00c09e;;
-  outline: 4px solid #f00;
-  transition-duration: 0.5s;
-  transform:scale(1);  
-  opacity:1;
-}
+    /* CHECKED STYLES */
+    #select [type=radio]:checked+img {
+      box-shadow: 0 0 0 8px #00c09e;
+      outline: 4px solid blue;
+      transition-duration: 0.5s;
+      transform: scale(1);
+      opacity: 1;
+      place-items: center center;
+    }
 
-@keyframes selected {
-  0% { border-color: #fff; }
-  50% { transform: scale(0.5); opacity: 0.8; box-shadow: 0 0 0 4px #00c09e; }
-  80%,100% { width: 100%; height: 100%; box-shadow: 0 0 0 4px #00c09e; }
-}
+    .checkmark {
+      position: absolute;
+      top: 70px;
+      left: 70px;
+      height: 25px;
+      width: 25px;
+      background-color: white;
+      border-radius: 50%;
+      border: blue;
+      transition-duration: 0.5s;
+    }
+
+    #select input:checked ~ .checkmark {
+      background-color: #2196F3;
+      transform:translate3d(-10px, -10px,0);
+      transition-duration: 0.5s;
+    }
+
+    #select:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    #select input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    #select .checkmark:after {
+      top: 65px;
+      left: 75px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+    }
   </style>
 
 </head>
@@ -131,12 +166,12 @@ $db_handle = new DBController();
 
                 echo "
               
-                  <div class='col-4 card-body text-center' id=select>
+                  <div class='col-4 card-body text-center'>
                     <h5>" . $query[$key]['name'] . "</h5>
-                    <label>
-                    <input type='radio' name='credit-card' value='visa' />
-                    
+                    <label id=select>
+                    <input type='radio' name='credit-card' value='visa'>
                     <img src='" . $query[$key]['path'] . "'/>
+                    <span class='checkmark'></span>
                     </label>
                   </div>
                 ";
@@ -173,14 +208,15 @@ $db_handle = new DBController();
                   foreach ($query as $key => $value) {
 
                     echo "
-                    <div class='col-6 card-body text-center' id=select>
-                    <h5>" . $query[$key]['name'] . "</h5>
-                    <label>
-                    <input type='radio' name='credit-card' value='visa' />
-                    
-                    <img src='" . $query[$key]['path'] . "'/>
-                    </label>
-                  </div>
+                    <div class='col-6 card-body text-center'>
+                      <h5>" . $query[$key]['name'] . "</h5>
+                      <label id=select>
+                        <input type='radio' name='credit-card' value='visa'>
+                        <img src='" . $query[$key]['path'] . "'>
+                        <span class='checkmark'></span>
+                      </label>
+            
+                    </div>
                 ";
                   }
                 } else {
