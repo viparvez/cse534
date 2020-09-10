@@ -53,7 +53,7 @@ $db_handle = new DBController();
     .checkmark {
       position: absolute;
       top: 70px;
-      left: 70px;
+      left: 80px;
       height: 25px;
       width: 25px;
       background-color: white;
@@ -63,7 +63,7 @@ $db_handle = new DBController();
     }
 
     #select input:checked ~ .checkmark {
-      background-color: #2196F3;
+      background: linear-gradient(45deg,skyblue, blue);
       transform:translate3d(-10px, -10px,0);
       transition-duration: 0.5s;
     }
