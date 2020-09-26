@@ -100,10 +100,10 @@ $db_handle = new DBController();
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">UltrasBot </div>
       <div class="list-group list-group-flush">
-        <a href="index.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="dashboard.html" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Messages</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="instructions.php" class="list-group-item list-group-item-action bg-light">Instructions</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
         <a href="gallery.php" class="list-group-item list-group-item-action bg-light">Gallery</a>
       </div>
