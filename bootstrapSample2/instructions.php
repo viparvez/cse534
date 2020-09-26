@@ -158,9 +158,14 @@ $db_handle = new DBController();
                 <h1>Instructions</h1>
                 <p>1. At first, go to Facebook for Developers, log in with your account</p>
                 <p>2. Then go to 'Products' the left menu bar</p>
-                <p>3. Then select 'Messenger' from the applications available for choosing</p>
+                <img src="images/sc01.jpg" width="80%" height="80%">
+                <p>3. Then select 'Messenger' from the applications available for choosing, it will be under "Add a product" if you are getting started</p>
+                <img src="images/sc02.jpg" width="80%" height="80%">
                 <p>4. Then click on add or remove tokens to connect pages to UltrasBOT</p>
+                <img src="images/sc03.jpg" width="80%" height="80%">
                 <p>5. Then provide the Callback URL and you will get the verify token</p>
+                <img src="images/sc04.jpg" width="80%" height="80%">
+                <img src="images/sc05.jpg" width="80%" height="80%">
             </div>
             <!-- Bootstrap core JavaScript -->
             <script src="vendor/jquery/jquery.min.js"></script>
